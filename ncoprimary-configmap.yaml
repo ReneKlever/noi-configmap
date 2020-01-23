@@ -16,6 +16,7 @@ data:
     create table mydb.mytable persistent
     (
     col1 incr primary key,
-    col2 varchar(255)
+    col2 varchar(255),
+    col3 varchar(255)
     );
     go
