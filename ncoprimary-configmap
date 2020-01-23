@@ -1,1 +1,10 @@
-#This is the first configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2020-01-23T15:38:28Z
+  name: first-test-configmap
+  namespace: noi
+data:
+  myvar1: '"true"'
+  myvar2: aliens
+  myvar3: "3"
