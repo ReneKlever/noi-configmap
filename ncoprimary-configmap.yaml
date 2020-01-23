@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  creationTimestamp: 2020-01-23T15:38:28Z
+  creationTimestamp: 2020-01-23T16:38:28Z
   name: eleven-noi-objserv-agg-primary-config
   namespace: noi
 data:
