@@ -19,10 +19,10 @@ pipeline {
                          returnStdout: true,
                          script: 'kubectl get pods -n noi |grep ncoprimary|cut --fields=1,2 --delimiter=-'
                 )}"""
+                NOIRELEASE = RELEASE.trim()
             }
             steps {
                 echo 'Deploying....'
-                def NOIRELEASE=RELEASE.trim()
                 sh 'kubectl create configmap ${NOIRELEASE}-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml -o yaml --dry-run | kubectl apply -f -'
             }
         }
