@@ -21,13 +21,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            environment {
-                RELEASE ="""${sh(
-                         returnStdout: true,
-                         script: 'kubectl get pods -n noi |grep ncoprimary|cut --fields=1,2 --delimiter=-'
-                )}"""
-                NOIRELEASE = RELEASE.trim()
-            }
             steps {
                 echo 'Deploying....'
                 sh 'kubectl delete pod ${NOIRELEASE}-ncoprimary-0'
