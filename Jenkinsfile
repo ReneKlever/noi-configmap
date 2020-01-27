@@ -24,6 +24,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 sh 'kubectl create configmap ${NOIRELEASE}-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml -o yaml --dry-run | kubectl apply -f -'
+                sh 'kubectl delete pod ${NOIRELEASE}-ncoprimary-0'
             }
         }
     }
