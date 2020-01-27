@@ -16,7 +16,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'kubectl create configmap prod-noi-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml -o yaml --dry-run | kubectl apply -f -'
+                sh 'RELEASE=`kubectl get pods -n noi |grep ncoprimary|cut --fields=1,2 --delimiter=-`'
+                sh 'kubectl create configmap ${RELEASE}-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml -o yaml --dry-run | kubectl apply -f -'
             }
         }
     }
