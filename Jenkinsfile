@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'kubectl create configmap my-noi-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml -o yaml --dry-run | kubectl apply -f -'
+                sh 'kubectl create configmap my-noi-objserv-agg-primary-config --from-file agg-p-props-append --from-file agg-p-sql-extensions -o yaml --dry-run | kubectl apply -f -'
             }
         }
         stage('Test') {
@@ -23,7 +23,7 @@ pipeline {
             }
             steps {
                 echo 'Deploying....'
-                sh 'kubectl create configmap ${NOIRELEASE}-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml -o yaml --dry-run | kubectl apply -f -'
+                sh 'kubectl create configmap ${NOIRELEASE}-objserv-agg-primary-config --from-file agg-p-props-append --from-file agg-p-sql-extensions -o yaml --dry-run | kubectl apply -f -'
                 sh 'kubectl delete pod ${NOIRELEASE}-ncoprimary-0'
             }
         }
