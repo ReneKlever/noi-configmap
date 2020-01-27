@@ -4,9 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..';
-                kubectl delete configmap dev-noi-objserv-agg-primary-config;
-                kubectl create configmap dev-noi-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml
+                echo 'Building..'
+                sh 'kubectl delete configmap dev-noi-objserv-agg-primary-config'
+                sh 'kubectl create configmap dev-noi-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml'
             }
         }
         stage('Test') {
@@ -16,9 +16,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....';
-                kubectl delete configmap prod-noi-objserv-agg-primary-config;
-                kubectl create configmap prod-noi-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml
+                echo 'Deploying....'
+                sh 'kubectl delete configmap prod-noi-objserv-agg-primary-config'
+                sh 'kubectl create configmap prod-noi-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml'
             }
         }
     }
