@@ -16,9 +16,10 @@ pipeline {
         stage('Deploy') {
             environment {
                 RELEASE ="""${sh(
-                returnStdout: true,
-                script: 'kubectl get pods -n noi |grep ncoprimary|cut --fields=1,2 --delimiter=-'
-            )}"""
+                         returnStdout: true,
+                         script: 'kubectl get pods -n noi |grep ncoprimary|cut --fields=1,2 --delimiter=-'
+                )}"""
+            }
             steps {
                 echo 'Deploying....'                
                 sh 'kubectl create configmap ${RELEASE}-objserv-agg-primary-config --from-file ncoprimary-configmap.yaml -o yaml --dry-run | kubectl apply -f -'
